@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="styles/inv.css">
+<link rel="stylesheet" href="styles/tab.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="scripts/FileSaver.js"></script>
+  <script src="scripts/dataengine.js"></script>
+  <script src="scripts/data.js"></script>
+</head>
+<body>
+<div id="main">
+</div>
+<div id="nav">
+	<img src="img/1.png" id="smog" />
+	<div id="innav">
+		<table>
+			<tr>
+				<td num="0">Ввод исходных данных</td>
+				<td num="1"><img src="img/argr.png" class="arrow" />Формирование наборов данных</td>
+				<td num="2"><img src="img/argr.png" class="arrow" />Формирование производственных схем</td>
+				<td num="3"><img src="img/argr.png" class="arrow" />Тестирование</td>
+				<td num="4"><img src="img/argr.png" class="arrow" />Выбор схем</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div id="aside">
+	<div class="button" id="open">Открыть</div>
+	<div class="button" id="save">Сохранить</div>
+	<div id="feat"></div>
+	<div class="button" id="tab">Таблицы</div>
+	<div class="button" id="sch">Схемы</div>
+</div>
+<input id="fileload" type="file" />
+<div id="menu"></div>
+<script src="scripts/conector.js"></script>
+<script src="scripts/viewer.js"></script>
+</body>
+</html>

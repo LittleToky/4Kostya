@@ -1,0 +1,122 @@
+body {
+	overflow: hidden;
+	margin: 0px;
+	font-family: Calibri;
+}
+#aside {
+	position: absolute;
+	width: 22%;
+	height: 100%;
+	display: block;
+	border-right: 1px solid #8C9797;
+	text-align: center;
+	padding-top: 5%;
+	background-color: #bababa;
+	box-shadow: 0px 0px 3px 2px #8C9797;
+}
+#nav {
+	position: absolute;
+	width: 78%;
+	right: 0px;
+	top: 0px;
+	display: block;
+}
+#main {
+	width: 64%;
+	right: 0px;
+	top: 50px;
+	bottom:0px;
+	position: absolute;
+	overflow: auto;
+	background-color: rgb(228, 249, 249);
+	padding: 70px 7% 170px 7%;
+}
+.button {
+	border: 1px solid #8C9797;
+	margin: 5%;
+	display: inline-block;
+	padding: 7px;
+	border-radius: 6px;
+	background-color: #ECF8F8;
+	box-shadow: 0px 0px 3px 2px #8C9797;
+	transition: box-shadow 0.2s;
+	cursor: pointer;
+}
+.button:active{
+	box-shadow: none;
+}
+#feat {
+	border: 1px solid #8C9797;
+	display: block;
+	margin: 5%;
+	height: 40%;
+	border-radius: 6px;
+	background-color: #ffffff;
+	box-shadow: inset 0px 0px 3px 2px #8C9797;
+	text-align: center;
+	padding: 3px;
+	overflow-y: auto;
+}
+#open {
+	top: 20%;
+}
+#open, #save {
+	width: 75%;
+}
+#tab, #sch {
+	min-width: 30%;
+	max-width: 80%
+}
+#nav table {
+	width: 100%;
+	min-height: 50px;
+	border-collapse: collapse;
+	background-color: rgb(198, 198, 198);
+	right: 0px;
+}
+#nav td {
+	width: 20%;
+	text-align: center;
+	border-bottom: 1px solid #8C9797;
+	cursor: pointer;
+}
+.current {
+	background-color: rgb(228, 249, 249);
+}
+.arrow {
+	position: absolute;
+	height: 100%;
+	max-width: 1.5%;
+	width: 30px;
+	display: block;
+	top:0px;
+	margin-left: -1px;
+}
+#smog {
+	position: absolute;
+	height: 40px;
+	width: 100%;
+	bottom: -40px;
+	right: 0px;
+}
+#menu {
+ display: none;
+ position: absolute;
+ background-color: #bababa;
+ border: 1px solid #8C9797;
+ box-shadow: 0px 0px 8px #5E6464;
+ z-index: 30;
+}
+#menu td {
+	padding-left: 6px;
+	padding-right: 10px;
+	transition: 0.15s;
+}
+#menu td:hover {
+	background-color: #ACEDED;
+	cursor: pointer;
+}
+#menu table {
+	border: none;
+	border-collapse: collapse;
+}

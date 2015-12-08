@@ -1,0 +1,67 @@
+.conttab {
+	border-collapse: collapse;
+	font-family: Calibri;
+	margin-bottom: 50px;
+}
+.conttab td {
+	border: 1px solid #8C9797;
+	padding: 0px 3px;
+	cursor: default;
+}
+caption {
+	font-size: 24px;
+	padding: 5px;
+}
+.conttab tr:nth-child(2n+1) {
+	background-color: #EFF5F5;
+}
+.conttab tr:nth-child(2n) {
+	background-color: #ffffff;
+}
+.conttab tr:first-child {
+	background-color: #ACEDED;
+	text-align: center;
+}
+select {
+	outline: none;
+}
+.wrong {
+	background-color: #f2a5b2;
+}
+#feat table{
+	border-collapse: collapse;
+	width: 100%;
+	margin: 1px;
+}
+#feat td{
+	border: 1px solid #ffffff;
+	vertical-align: top;
+}
+#feat table tr:nth-child(2n+1) {
+	background-color: #EFF5F5;
+}
+#feat table td:nth-child(2n+1) {
+	text-align: left;
+	padding-left: 3px;
+}
+#feat table tr:nth-child(2n) {
+	background-color: #ffffff;
+}
+#feat table tr:first-child {
+	background-color: #ACEDED;
+	text-align: center;
+}
+#feat input {
+	background-color: inherit;
+	outline: none;
+	border: 1px solid #bbbbbb;
+	font-size: 14px;
+	padding-left: 3px;
+	width: 96%;
+}
+#feat input:focus {
+	background-color: #FBF7DA;
+}
+.center {
+	text-align: center;
+}
