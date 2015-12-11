@@ -19,3 +19,18 @@
 .leftsch {
 	float: left;
 }
+.plus {
+	border: 1px solid #aaaaaa;
+	border-radius: 5px;
+	text-align: center;
+	color: #aaaaaa;
+	transition: all 0.15s;
+}
+.plus:hover{
+	box-shadow: 0px 0px 6px #4E6268;
+	color: #699697;
+	border-color: #699697;
+}
+.plus:active {
+	box-shadow: none;
+}

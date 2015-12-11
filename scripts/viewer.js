@@ -167,21 +167,21 @@ function right (targ) { //(li&un added)
 };
 
 function contsch(n) {
-	var emptyTd='<td class="empty"></td>', listeners=' onclick="selectline(this)">';
+	var emptyTd='<td class="empty"></td>', listeners=' class="tile" onclick="selectline(this)">';
 	if (n==0) {
-		return '<table class="contsch leftsch">'+items.reduce(function(itlines,item,it){return(itlines+'<tr><td colspan="3" class="tile" name="it'+it+'"'+listeners+item.name+'</td><td></td></tr>'+item.routes.reduce(function(rolines,route,ro){return(rolines+'<tr>'+emptyTd+'<td colspan="2" class="tile" name="it'+it+'.'+ro+'"'+listeners+route.name+'</td><td></td></tr>'+route.operations.reduce(function(oplines,operation,op){return(oplines+'<tr>'+emptyTd+emptyTd+'<td class="tile" name="it'+it+'.'+ro+'.'+op+'"'+listeners+operation.name+'</td><td'+((operation.equip==='')?'>':' class="tile" name="ma'+operation.equip+'"'+listeners+machines[operation.equip].name)+'</td></tr>')},''))},''))},'')+'</table>';
+		return '<table class="contsch leftsch"><tr><td class="plus" colspan="3" onclick="items.push(new Item);pager(page)">+</td><td colspan="2"></td></tr>'+items.reduce(function(itlines,item,it){return(itlines+'<tr><td colspan="3" name="it'+it+'"'+listeners+item.name+'</td><td></td></tr>'+item.routes.reduce(function(rolines,route,ro){return(rolines+'<tr>'+emptyTd+'<td colspan="2" name="it'+it+'.'+ro+'"'+listeners+route.name+'</td><td></td></tr>'+route.operations.reduce(function(oplines,operation,op){return(oplines+'<tr>'+emptyTd+emptyTd+'<td name="it'+it+'.'+ro+'.'+op+'"'+listeners+operation.name+'</td><td'+((operation.equip==='')?'>':' name="ma'+operation.equip+'"'+listeners+machines[operation.equip].name)+'</td></tr>')},''))},''))},'')+'</table>';
 	};
 	if (n==1) {
-		return '<table class="contsch rightsch">'+machines.reduce(function(malines,machine,ma){return(malines+'<tr><td class="tile" name="ma'+ma+'"'+listeners+machine.name+'</td></tr>')},'')+'</table>';
+		return '<table class="contsch rightsch"><tr><td class="plus" onclick="machines.push(new Machine);pager(page)">+</td><td colspan="2"></td></tr>'+machines.reduce(function(malines,machine,ma){return(malines+'<tr><td name="ma'+ma+'"'+listeners+machine.name+'</td></tr>')},'')+'</table>';
 	};
 	if (n==2) {
-		return '<table class="contsch leftsch">'+orders.reduce(function(orlines,order,or){return(orlines+'<tr><td class="tile" colspan="2" name="or'+or+'"'+listeners+order.name+'</td><td></td></tr>'+order.positions.reduce(function(polines,position,po){return(polines+'<tr>'+emptyTd+'<td class="tile" name="or'+or+'.'+po+''+listeners+'Позиция №'+(po*1+1).toString()+'</td><td'+((position.it==='')?'>':' class="tile" name="it'+position.it+'"'+listeners+items[position.it].name)+'</td></tr>')},''))},'')+'</table>';
+		return '<table class="contsch leftsch"><tr><td class="plus" colspan="2" onclick="orders.push(new Order);pager(page)">+</td><td colspan="2"></td></tr>'+orders.reduce(function(orlines,order,or){return(orlines+'<tr><td colspan="2" name="or'+or+'"'+listeners+order.name+'</td><td></td></tr>'+order.positions.reduce(function(polines,position,po){return(polines+'<tr>'+emptyTd+'<td name="or'+or+'.'+po+'"'+listeners+'Позиция №'+(po*1+1).toString()+'</td><td'+((position.it==='')?'>':' name="it'+position.it+'"'+listeners+items[position.it].name)+'</td></tr>')},''))},'')+'</table>';
 	};
 	if (n==3) {
-		return '<table class="contsch rightsch">'+items.reduce(function(itlines,item,it){return(itlines+'<tr><td class="tile" name="it'+it+'"'+listeners+item.name+'</td></tr>')},'')+'</table>'
+		return '<table class="contsch rightsch"><tr><td class="plus" onclick="items.push(new Item);pager(page)">+</td><td colspan="2"></td></tr>'+items.reduce(function(itlines,item,it){return(itlines+'<tr><td name="it'+it+'"'+listeners+item.name+'</td></tr>')},'')+'</table>'
 	};
 	if (n==4) {
-		return '<table class="contsch leftsch">'+lists.reduce(function(lilines,list,li){return(lilines+'<tr><td class="tile" colspan="2" name="li'+li+'"'+listeners+list.name+'</td><td></td></tr>'+list.units.reduce(function(unlines,unit,un){return(unlines+'<tr>'+emptyTd+'<td class="tile" name="li'+li+'.'+un+'"'+listeners+'Ресурс №'+(un*1+1).toString()+'</td><td'+((unit.equip==='')?'>':' class="tile" name="ma'+unit.equip+'"'+listeners+machines[unit.equip].name)+'<td></td></tr>')},''))},'')+'</table>'
+		return '<table class="contsch leftsch"><tr><td class="plus" colspan="2" onclick="lists.push(new List);pager(page)">+</td><td colspan="2"></td></tr>'+lists.reduce(function(lilines,list,li){return(lilines+'<tr><td colspan="2" name="li'+li+'"'+listeners+list.name+'</td><td></td></tr>'+list.units.reduce(function(unlines,unit,un){return(unlines+'<tr>'+emptyTd+'<td name="li'+li+'.'+un+'"'+listeners+'Ресурс №'+(un*1+1).toString()+'</td><td'+((unit.equip==='')?'>':' name="ma'+unit.equip+'"'+listeners+machines[unit.equip].name)+'<td></td></tr>')},''))},'')+'</table>'
 	};
 }
 
