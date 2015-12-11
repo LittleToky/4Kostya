@@ -111,8 +111,8 @@ function selectline(tr){ // реакция на клик по строке в т
 	currentLine=tr.attributes.name.value;
 	$('.selected').css('background-color','');
 	$('.selected').removeClass('selected');
-	$(tr).addClass('selected');
-	$(tr).css('background-color','#D9F987');
+	$(document.getElementsByName(currentLine)).addClass('selected');
+	$(document.getElementsByName(currentLine)).css('background-color','#D9F987');
 	features(defobj(currentLine));
 }
 
