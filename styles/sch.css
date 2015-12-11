@@ -5,6 +5,7 @@
 	padding: 0px 20px;
 	box-shadow: 0px 0px 6px #4E6268;
 	border: 1px solid #699697;
+	transition: all 0.1s;
 }
 .empty {
 	width: 40px;
@@ -34,4 +35,10 @@
 }
 .plus:active {
 	box-shadow: none;
+}
+.tile.wrong {
+	background-color: rgba( 255, 210, 210, 0.8);
+}
+.tile.selected {
+	background-color: #D9F987;
 }

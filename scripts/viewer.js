@@ -10,6 +10,7 @@ $('#main').on('scroll',function(){$('#menu').css('display','none')});
 function pager(num){ // действия при переключении страниц
 	pagePointer(num); // переключатель указателя страниц
 	pageCreate(num); // Содержимое страницы
+	wronger(); // Подсвечивает недозаполненные элементы
 };
 
 function pageCreate(num){ // Содержимое страницы
@@ -112,7 +113,6 @@ function selectline(tr){ // реакция на клик по строке в т
 	$('.selected').css('background-color','');
 	$('.selected').removeClass('selected');
 	$(document.getElementsByName(currentLine)).addClass('selected');
-	$(document.getElementsByName(currentLine)).css('background-color','#D9F987');
 	features(defobj(currentLine));
 }
 
@@ -183,6 +183,12 @@ function contsch(n) {
 	if (n==4) {
 		return '<table class="contsch leftsch"><tr><td class="plus" colspan="2" onclick="lists.push(new List);pager(page)">+</td><td colspan="2"></td></tr>'+lists.reduce(function(lilines,list,li){return(lilines+'<tr><td colspan="2" name="li'+li+'"'+listeners+list.name+'</td><td class="plus" onclick="lists['+li+'].units.push(new Unit);pager(page)">+</td><td></td></tr>'+list.units.reduce(function(unlines,unit,un){return(unlines+'<tr>'+emptyTd+'<td name="li'+li+'.'+un+'"'+listeners+'Ресурс №'+(un*1+1).toString()+'</td><td colspan="2"'+((unit.equip==='')?'>':' name="ma'+unit.equip+'"'+listeners+machines[unit.equip].name)+'<td></td></tr>')},''))},'')+'</table>'
 	};
+}
+
+function wronger() {
+	items.forEach(function(item,it){if (item.routes.length==0) {$(document.getElementsByName('it'+it)).addClass('wrong');} else {item.routes.forEach(function(route,ro) {if (route.operations.length==0) {$(document.getElementsByName('it'+it+'.'+ro)).addClass('wrong');} else {route.operations.forEach(function(operation,op){if (operation.equip==="") {$(document.getElementsByName('it'+it+'.'+ro+'.'+op)).addClass('wrong');}})}})}});
+	orders.forEach(function(order,or){if (order.positions.length==0) {$(document.getElementsByName('or'+or)).addClass('wrong');} else {order.positions.forEach(function(position,po){if (position.it===""){$(document.getElementsByName('or'+or+'.'+po)).addClass('wrong');}})}});
+	lists.forEach(function(list,li){if (list.units.length==0) {$(document.getElementsByName('li'+li)).addClass('wrong');} else {list.units.forEach(function(unit,un){if (unit.equip===""){$(document.getElementsByName('li'+li+'.'+un)).addClass('wrong');}})}});
 }
 
 $(document.getElementById('nav')).find('td').on('click',function(){pager(this.attributes.num.value)}); // Эвент листенеры на кнопках разделов

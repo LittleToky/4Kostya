@@ -7,6 +7,7 @@
 	border: 1px solid #8C9797;
 	padding: 0px 3px;
 	cursor: default;
+	transition: all 0.1s;
 }
 caption {
 	font-size: 24px;
@@ -27,6 +28,12 @@ select {
 }
 .wrong {
 	background-color: #f2a5b2;
+}
+.wrong td {
+	background-color: rgba( 250, 210, 210, 0.5);
+}
+.selected td {
+	background-color: #D9F987;
 }
 #feat table{
 	border-collapse: collapse;
