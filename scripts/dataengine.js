@@ -91,7 +91,7 @@ function del(type) {
 	if (type=='Item') {
 		items.splice(indexes[0]*1,1);
 		orders.forEach(function(order){order.positions.forEach(function(position){
-			if (position.it==indexes[0]) {position.it=''};
+			if (position.it===indexes[0]) {position.it=''};
 			if (position.it*1>indexes[0]*1) {position.it=(position.it*1-1).toString()}
 		})});
 	};
@@ -100,11 +100,11 @@ function del(type) {
 	if (type=='Machine') {
 		machines.splice(indexes[0]*1,1);
 		lists.forEach(function(list){list.units.forEach(function(unit){
-			if (unit.equip==indexes[0]) {unit.equip=''};
+			if (unit.equip===indexes[0]) {unit.equip=''};
 			if (unit.equip*1>indexes[0]*1) {unit.equip=(unit.equip-1).toString()}
 		})});
 		items.forEach(function(item){item.routes.forEach(function(route){route.operations.forEach(function(operation){
-			if (operation.equip==indexes[0]) {operation.equip=''};
+			if (operation.equip===indexes[0]) {operation.equip=''};
 			if (operation.equip*1>indexes[0]*1) {operation.equip=(operation.equip*1-1).toString()};
 		})})});
 	};
@@ -122,8 +122,8 @@ function move(s){ // s=-1 вверх, s=1 вниз
 		items[indexes[0]]=items[indexes[0]*1+s];
 		items[indexes[0]*1+s]=mirror;
 		orders.forEach(function(order){order.positions.forEach(function(position){
-			if (position.it==indexes[0]) {position.it=(indexes[0]*1+s).toString()}
-			else {if (position.it==(indexes[0]*1+s).toString()) {position.it=indexes[0]}};
+			if (position.it===indexes[0]) {position.it=(indexes[0]*1+s).toString()}
+			else {if (position.it===(indexes[0]*1+s).toString()) {position.it=indexes[0]}};
 		})});
 	};
 	if (type=='Route'){
@@ -141,12 +141,12 @@ function move(s){ // s=-1 вверх, s=1 вниз
 		machines[indexes[0]]=machines[indexes[0]*1+s];
 		machines[indexes[0]*1+s]=mirror;
 		lists.forEach(function(list){list.units.forEach(function(unit){
-			if (unit.equip==indexes[0]) {unit.equip=(indexes[0]*1+s).toString()}
-			else {if (unit.equip==(indexes[0]*1+s).toString()) {unit.equip=indexes[0]}};
+			if (unit.equip===indexes[0]) {unit.equip=(indexes[0]*1+s).toString()}
+			else {if (unit.equip===(indexes[0]*1+s).toString()) {unit.equip=indexes[0]}};
 		})});
 		items.forEach(function(item){item.routes.forEach(function(route){route.operations.forEach(function(operation){
-			if (operation.equip==indexes[0]) {operation.equip=(indexes[0]*1+s).toString()}
-			else {if (operation.equip==(indexes[0]*1+s).toString()) {operation.equip=indexes[0]}};
+			if (operation.equip===indexes[0]) {operation.equip=(indexes[0]*1+s).toString()}
+			else {if (operation.equip===(indexes[0]*1+s).toString()) {operation.equip=indexes[0]}};
 		})})});
 		
 	};

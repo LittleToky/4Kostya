@@ -1,4 +1,4 @@
-var static=[{caption:'Список производимых деталей', heads:['Название детали','Отпускная цена','Шифр','Название маршрута','Себестоимость производства','Название операции','Длительность операции','Длительность переналадки','Стоимость оснастки','Оборудование']},{caption:'Список типов оборудования',heads:['Название станка','Шифр','Стоимость','Стоимость<br>обслуживания','Длина','Ширина','Имеется<br>на производстве']},{caption:'Список производственных заказов',heads:['Название заказа','Бюджет на оборудование','Срок выполнения','Желаемая прибыль','Стоимость заказа','Деталь','Шифр','Размер парти','Можно исключить','Оценить количество станков']},{caption:'Список доступных деталей',heads:['Название<br>детали','Шифр','Отпускная<br>цена']},{caption:'Производственные схемы',heads:['Название<br>схемы','Cтанок','Шифр','Количество<br>станков','В наличии<br>на производстве','Длина цеха','Ширина цеха']}], page=0;
+var static=[{caption:'Список производимых деталей', heads:['Название детали','Отпускная цена','Шифр','Название маршрута','Себестоимость производства','Название операции','Длительность операции','Длительность переналадки','Стоимость оснастки','Оборудование']},{caption:'Список типов оборудования',heads:['Название станка','Шифр','Стоимость','Стоимость<br>обслуживания','Длина','Ширина','Имеется<br>на производстве']},{caption:'Список производственных заказов',heads:['Название заказа','Бюджет на оборудование','Срок выполнения','Желаемая прибыль','Стоимость заказа','Деталь','Шифр','Размер парти','Можно исключить','Оценить количество станков']},{caption:'Список доступных деталей',heads:['Название<br>детали','Шифр','Отпускная<br>цена']},{caption:'Производственные схемы',heads:['Название<br>схемы','Cтанок','Шифр','Количество<br>станков','В наличии<br>на производстве','Длина цеха','Ширина цеха']}], page=0, pageType='tab';
 
 window.oncontextmenu = function () {
     return false;
@@ -12,19 +12,35 @@ function pager(num){ // действия при переключении стр�
 	pageCreate(num); // Содержимое страницы
 };
 
-function pageCreate(num){ // Содержимое страницы 
-	if (num==0) {
-		document.getElementById('main').innerHTML=conttab(0)+conttab(1);
-		if(currentLine!=undefined) {$(document.getElementsByName(currentLine)).click();}
-	};
-	if (num==1) {
-		document.getElementById('main').innerHTML=conttab(2)+conttab(3);
-		if(currentLine!=undefined) {$(document.getElementsByName(currentLine)).click();}
-	};
-	if (num==2) {
-		document.getElementById('main').innerHTML=conttab(4)+conttab(1);
-		if(currentLine!=undefined) {$(document.getElementsByName(currentLine)).click();}
-	};
+function pageCreate(num){ // Содержимое страницы
+	if (pageType=='tab') {
+		if (num==0) {
+			document.getElementById('main').innerHTML=conttab(0)+conttab(1);
+			if(currentLine!=undefined) {$(document.getElementsByName(currentLine)).click();}
+		};
+		if (num==1) {
+			document.getElementById('main').innerHTML=conttab(2)+conttab(3);
+			if(currentLine!=undefined) {$(document.getElementsByName(currentLine)).click();}
+		};
+		if (num==2) {
+			document.getElementById('main').innerHTML=conttab(4)+conttab(1);
+			if(currentLine!=undefined) {$(document.getElementsByName(currentLine)).click();}
+		};
+	} else {
+		if (num==0) {
+			document.getElementById('main').innerHTML=contsch(0)+contsch(1);
+			if(currentLine!=undefined) {$(document.getElementsByName(currentLine)).click();}
+		};
+		if (num==1) {
+			document.getElementById('main').innerHTML=contsch(2)+contsch(3);
+			if(currentLine!=undefined) {$(document.getElementsByName(currentLine)).click();}
+		};
+		if (num==2) {
+			document.getElementById('main').innerHTML=contsch(4)+contsch(1);
+			if(currentLine!=undefined) {$(document.getElementsByName(currentLine)).click();}
+		};
+	}
+		
 };
 
 function pagePointer(num){ // переключатель указателя страниц
@@ -150,5 +166,26 @@ function right (targ) { //(li&un added)
 	$(menu).css('top',event.clientY+'px');
 };
 
+function contsch(n) {
+	var emptyTd='<td class="empty"></td>', listeners=' onclick="selectline(this)">';
+	if (n==0) {
+		return '<table class="contsch leftsch">'+items.reduce(function(itlines,item,it){return(itlines+'<tr><td colspan="3" class="tile" name="it'+it+'"'+listeners+item.name+'</td><td></td></tr>'+item.routes.reduce(function(rolines,route,ro){return(rolines+'<tr>'+emptyTd+'<td colspan="2" class="tile" name="it'+it+'.'+ro+'"'+listeners+route.name+'</td><td></td></tr>'+route.operations.reduce(function(oplines,operation,op){return(oplines+'<tr>'+emptyTd+emptyTd+'<td class="tile" name="it'+it+'.'+ro+'.'+op+'"'+listeners+operation.name+'</td><td'+((operation.equip==='')?'>':' class="tile" name="ma'+operation.equip+'"'+listeners+machines[operation.equip].name)+'</td></tr>')},''))},''))},'')+'</table>';
+	};
+	if (n==1) {
+		return '<table class="contsch rightsch">'+machines.reduce(function(malines,machine,ma){return(malines+'<tr><td class="tile" name="ma'+ma+'"'+listeners+machine.name+'</td></tr>')},'')+'</table>';
+	};
+	if (n==2) {
+		return '<table class="contsch leftsch">'+orders.reduce(function(orlines,order,or){return(orlines+'<tr><td class="tile" colspan="2" name="or'+or+'"'+listeners+order.name+'</td><td></td></tr>'+order.positions.reduce(function(polines,position,po){return(polines+'<tr>'+emptyTd+'<td class="tile" name="or'+or+'.'+po+''+listeners+'Позиция №'+(po*1+1).toString()+'</td><td'+((position.it==='')?'>':' class="tile" name="it'+position.it+'"'+listeners+items[position.it].name)+'</td></tr>')},''))},'')+'</table>';
+	};
+	if (n==3) {
+		return '<table class="contsch rightsch">'+items.reduce(function(itlines,item,it){return(itlines+'<tr><td class="tile" name="it'+it+'"'+listeners+item.name+'</td></tr>')},'')+'</table>'
+	};
+	if (n==4) {
+		return '<table class="contsch leftsch">'+lists.reduce(function(lilines,list,li){return(lilines+'<tr><td class="tile" colspan="2" name="li'+li+'"'+listeners+list.name+'</td><td></td></tr>'+list.units.reduce(function(unlines,unit,un){return(unlines+'<tr>'+emptyTd+'<td class="tile" name="li'+li+'.'+un+'"'+listeners+'Ресурс №'+(un*1+1).toString()+'</td><td'+((unit.equip==='')?'>':' class="tile" name="ma'+unit.equip+'"'+listeners+machines[unit.equip].name)+'<td></td></tr>')},''))},'')+'</table>'
+	};
+}
+
 $(document.getElementById('nav')).find('td').on('click',function(){pager(this.attributes.num.value)}); // Эвент листенеры на кнопках разделов
 $(document.getElementById('nav')).find('td').first().click(); // Эмуляция клика по указателю первой страницы
+$(document.getElementById('sch')).on('click',function(){pageType='sch'; pager(page)});
+$(document.getElementById('tab')).on('click',function(){pageType='tab'; pager(page)});
