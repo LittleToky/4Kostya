@@ -20,6 +20,7 @@
 	float: left;
 }
 .plus {
+	width: 12px;
 	border: 1px solid #aaaaaa;
 	border-radius: 5px;
 	text-align: center;
