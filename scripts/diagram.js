@@ -4,9 +4,7 @@ function diagramPrepare() {
     type: 'POST',
     url: 'process.php',
     dataType: 'json',
-    data: {
-        arg: 22
-    },
+    data: {arg: 22},
     success: function(data) {console.log(data);}
 	});
 };
