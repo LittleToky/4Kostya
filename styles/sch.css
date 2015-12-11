@@ -5,7 +5,7 @@
 	padding: 0px 20px;
 	box-shadow: 0px 0px 6px #4E6268;
 	border: 1px solid #699697;
-	transition: all 0.1s;
+	cursor: default;
 }
 .empty {
 	width: 40px;
@@ -26,6 +26,7 @@
 	border-radius: 5px;
 	text-align: center;
 	color: #aaaaaa;
+	cursor: default;
 	transition: all 0.15s;
 }
 .plus:hover{
