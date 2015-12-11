@@ -41,7 +41,7 @@ function pageCreate(num){ // Содержимое страницы
 			if(currentLine!=undefined) {$(document.getElementsByName(currentLine)).click();}
 		};
 	}
-		
+	if (num==3) {diagramPrepare()}
 };
 
 function pagePointer(num){ // переключатель указателя страниц
