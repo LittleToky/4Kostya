@@ -1,0 +1,68 @@
+#fileload {
+	position: absolute;
+	display: none;
+}
+.button {
+	border: 1px solid #8C9797;
+	margin: 0.1%;
+	display: inline-block;
+	padding: 7px;
+	border-radius: 6px;
+	background-color: #ECF8F8;
+	box-shadow: 0px 0px 3px 2px #8C9797;
+	transition: box-shadow 0.2s;
+	cursor: pointer;
+}
+.button:active{
+	box-shadow: none;
+}
+#coord caption {
+	font-size: 24px;
+	padding: 5px;
+	margin-bottom: 20px;
+}
+#coord {
+	border-collapse: collapse;
+}
+.matype {
+	border-top: 1px dashed #8C9797;
+	border-bottom: 1px dashed #8C9797;
+}
+.matype div {
+	display: block;
+	height: 38px;
+	width: auto;
+	overflow: hidden;
+	padding-right: 10px;
+}
+.matype div:hover {
+	overflow: auto;
+}
+.cell.edge {
+	border-right: 1px solid #000000;
+}
+.cell {
+	border: 1px dashed #8C9797;
+}
+.date {
+	text-align: center;
+}
+#workarea {
+	position: absolute;
+	display: block;
+}
+.elem {
+	display: block;
+	border: 1px solid #8C9797;
+	text-align: center;
+	padding: 0px 3px;
+	position: absolute;
+	overflow: hidden;
+	opacity: 0.7;
+	white-space: nowrap;
+}
+.elem:hover {
+	overflow: visible;
+	opacity: 1;
+	z-index: 40;
+}
