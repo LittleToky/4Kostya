@@ -81,3 +81,21 @@
 	color: red;
 	padding-left: 3px;
 }
+.badmachine {
+	background-color: rgb( 250, 210, 210);
+}
+
+.matype p {
+	color: grey;
+	margin: 0px;
+}
+.mainfo {
+	position:absolute;
+	z-index: 20;
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	padding-top: 1px;
+}
+.mainfo p {
+	margin: 0px;
+}
