@@ -4,7 +4,7 @@ $(document.getElementById('fileload')).on('change',openthis);
 
 
 function save() {
-	allData=[items,machines,orders,lists];
+	allData=[items,machines,orders,lists,fullDiagramData];
 	var allDataJSON=JSON.stringify(allData);
 	var blob = new Blob([allDataJSON], {type: "text/plain;charset=utf-8"});
 	saveAs(blob, "allData.txt");
