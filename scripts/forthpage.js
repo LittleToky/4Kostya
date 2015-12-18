@@ -36,6 +36,6 @@ function createForth() {
 }
 
 function addLines() {
-	var str=fullDiagramData.reduce(function(all,order){return(all+'<tr><td>111</td><td>222</td><td>333</td><td>444</td><td>555</td><td>666</td><td><input type="button" value="Отчёт" class="butfortab"><br><input type="button" value="Расписание"></td></tr>')},'');
+	var str=fullDiagramData.reduce(function(all,order,or){return(all+'<tr><td>111</td><td>222</td><td>333</td><td>444</td><td>555</td><td>666</td><td><input type="button" value="Отчёт" class="butfortab"><br><input type="button" value="Расписание" onclick="diagramData=fullDiagramData['+or+'];setDiagram();"></td></tr>')},'');
 	$(document.getElementById('tab1')).append(str);
 }

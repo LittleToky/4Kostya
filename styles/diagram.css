@@ -1,0 +1,88 @@
+#fileload {
+	position: absolute;
+	display: none;
+}
+#coord caption {
+	font-size: 24px;
+	padding: 5px;
+	margin-bottom: 20px;
+}
+#coord {
+	border-collapse: collapse;
+}
+.matype {
+	border-top: 1px dashed #8C9797;
+	border-bottom: 1px dashed #8C9797;
+}
+.matype div {
+	display: block;
+	height: 38px;
+	width: auto;
+	overflow: hidden;
+	padding-right: 10px;
+}
+.cell.edge {
+	border-right: 1px solid #000000;
+}
+.cell {
+	border: 1px dashed #8C9797;
+}
+.date {
+	text-align: center;
+	padding-bottom: 20px;
+}
+#workarea {
+	position: absolute;
+	display: block;
+}
+.elem {
+	display: block;
+	border: 1px solid #8C9797;
+	text-align: center;
+	padding: 0px 3px;
+	position: absolute;
+	overflow: hidden;
+	opacity: 0.7;
+	white-space: nowrap;
+	transition: background-color 0.15s;
+}
+.elem:hover {
+	overflow: visible;
+	opacity: 1;
+	z-index: 40;
+}
+#deadline {
+	background-color: rgba( 250, 210, 210, 0.7);
+	display: block;
+	position: absolute;
+	border-left: 2px solid red;
+}
+#deadline p {
+	margin-top: -20px;
+	border-left: 2px solid red;
+	margin-left: -2px;
+	height: 20px;
+	color: red;
+	padding-left: 3px;
+}
+.badmachine {
+	background-color: rgb( 250, 210, 210);
+}
+.badmachine.mainfo {
+	background-color: rgb( 250, 210, 210);
+}
+.matype p {
+	color: grey;
+	margin: 0px;
+}
+.mainfo {
+	position:absolute;
+	z-index: 20;
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	padding-top: 1px;
+}
+.mainfo p {
+	margin: 0px;
+	color: grey;
+}
