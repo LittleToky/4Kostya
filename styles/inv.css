@@ -120,3 +120,11 @@ body {
 	border: none;
 	border-collapse: collapse;
 }
+#generalStatus {
+	font-size: 2em;
+	margin-top: -20px;
+	margin-bottom: 10px;
+}
+#status {
+	font-size: 1.2em;
+}

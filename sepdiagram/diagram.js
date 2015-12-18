@@ -62,8 +62,9 @@ function setDiagram() { // вывод диаграммы
 		if (document.getElementsByClassName('mainfo').length==0) {$(document.getElementById('main')).append('<div class="mainfo"></div>');}
 		$('.mainfo').html(this.innerHTML);
 		$('.mainfo').css({'top':top}); $('.mainfo').css({'left':left}); $('.mainfo').css({'width':width}); $('.mainfo').css({'min-height':minheight});
-		$('.mainfo').animate({'display':'block'});
-		$('.mainfo').on('mouseout',function(){$(this).animate({'display':'none'})});	
+		$('.mainfo').show();
+		if($(this).hasClass('badmachine')) {$('.mainfo').addClass('badmachine')}else{$('.mainfo').removeClass('badmachine')}
+		$('.mainfo').on('mouseleave',function(){$(this).hide()});	
 	});
 
 	deadLiner(); // отобразить deadLine опции
@@ -108,7 +109,7 @@ function lighteron(targ) { // Подсветка и изменение поло�
  	$(arr).addClass('group'); // помечаем группу класом group
  	for (var w=0; w<l; w++) { // для каждого элемента группы
  		var target=arr[w], order=$(target).data('ord'); //определяем порядковый номер в группе
- 		target.style.backgroundColor='#ffffff';
+ 		$(target).css({'background-color':'white'});
  		target.innerHTML+=' (№'+order+')'; // дописываем порядковый номер в полоску
  	}
 }
@@ -118,7 +119,7 @@ function lighteroff() { // Отключение подсветки группы
 		var name=arr[0].attributes.name.value.slice(2); //определяем номер группы
 		for (var w=0; w<l; w++) { // для каждого элемента группы
 			var target=arr[w];
-			target.style.backgroundColor='#'+colors[name]; // возвращаем исходный цвет по номеру группы
+			$(target).css({'background-color':'#'+colors[name]}); // возвращаем исходный цвет по номеру группы
 			target.innerHTML=arr[w].innerHTML.slice(0,arr[w].innerHTML.indexOf('(№')); // удаляем из полоски порядковый номер в группе
 	 	}
 		$('.group').removeClass('group'); //убираем пометку группы
