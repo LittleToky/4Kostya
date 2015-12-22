@@ -40,7 +40,7 @@ function setDiagram() { // вывод диаграммы
 				str+='<td class="cell edge"></td>'}
 			str+='</tr>'
 		}
-		str+='</table><div id="workarea"></div>'; 
+		str+='</table><br><input type="checkbox" onchange="grid(this)" checked/> Убрать/Показать сетку<div id="workarea"></div>'; 
 		document.getElementById('main').innerHTML=str; // вывод координатной сетки в main
 		var leftTopCorner=$(document.getElementById('coord')).find('.cell').offset(); // координаты левого верхнего угла рабочей области
 		var workarea=document.getElementById('workarea').style; workarea.top=(leftTopCorner.top)+'px'; workarea.left=(leftTopCorner.left-1)+'px'; // смещаем workarea в нужное место
@@ -89,11 +89,7 @@ function deadLiner() {
 	diagramData.forEach(function(machine){ // расчет коэффициента загрузки для каждого станка
 		var workMinutes=0; // время непосредственной работы станка до ДЛ
 		machine.operations.forEach(function(operation){ // для каждой операции
-			var operEnd=operation.start+operation.duration+delay; // время окончания операции
-			if (operEnd>deadMinutes){ // если операция заканчивается позже дедлайна
-				var toAdd=operation.duration-operEnd+deadMinutes; //определяем сколько минут из нее выполнено до ДЛ
-				workMinutes+=(toAdd>0)?toAdd:0; // если часть операции выполнена до ДЛ, к рабочим минутам станка добавить эти минуты
-			}else {workMinutes+=operation.duration} // если вся операция выполнена до ДЛ, к рабочим минутом станка добавляем ее длительность
+			workMinutes+=operation.duration // добавляем длительность операции к рабочим минутам станка
 		});
 		load.push((workMinutes*100/deadMinutes).toFixed(2)+'%'); // расчет коэф. загрузки станка, запоминаем в load
 	});
@@ -155,7 +151,9 @@ function mainfo(targ){
 	$('.mainfo').css({'top':'20px'});	
 }
 
-
+function grid(input) {
+	if(input.checked) {$('.cell:not(.edge)').css({'border-right':'1px dashed #8C9797'})} else {$('.cell:not(.edge)').css({'border-right':'none'})}
+}
 
 
 /*
