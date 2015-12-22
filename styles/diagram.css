@@ -11,8 +11,8 @@
 	border-collapse: collapse;
 }
 .matype {
-	border-top: 1px dashed #8C9797;
-	border-bottom: 1px dashed #8C9797;
+	border: 1px solid #8C9797;
+	border-left: none;
 }
 .matype div {
 	display: block;
@@ -22,10 +22,12 @@
 	padding-right: 10px;
 }
 .cell.edge {
-	border-right: 1px solid #000000;
+	border-right: 1px solid #8C9797;
 }
 .cell {
-	border: 1px dashed #8C9797;
+	border-right: 1px dashed #8C9797;
+	border-bottom: 1px solid #8C9797;
+	border-top: 1px solid #8C9797;
 }
 .date {
 	text-align: center;
