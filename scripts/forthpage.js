@@ -1,7 +1,8 @@
-var fullDiagramData=[];
+var receivedData;
 
 function sendData() {
 	console.log('Отправляем данные на сервер');
+	console.log(JSON.stringify(allData));
 	function getData() {
 		$.ajax({
     	type: 'POST',
@@ -9,23 +10,12 @@ function sendData() {
     	dataType: 'json',
     	data: {arg: JSON.stringify(allData)},
     	success: function(data) {
-    			console.log(data);
-    			fullDiagramData.push(JSON.parse(data.data));
-    			forthCount(data);
+    		receivedData=data;
+    		make4thTab();
     		}
 		});
 	};
 	getData();
-}
-
-function forthCount(data) {
-	var main=document.getElementById('main');
-	main.innerHTML='';
-	$(main).append('<p id="generalStatus">Идет моделирование производственной системы</p>');
-	$(main).append('<p id="status">'+data.status+'</p>');
-	var str='<table class="conttab"><caption>'+static[5].caption+'</caption><tbody id="tab1"><tr>'+static[5].heads.reduce(function(all,head){return(all+'<td>'+head+'</td>')},'')+'</tr></tbody></table>';
-	$(main).append(str);
-	addLines();
 }
 
 function createForth() {
@@ -35,7 +25,18 @@ function createForth() {
 	$(document.getElementById('startcount')).on('click',sendData);
 }
 
-function addLines() {
-	var str=fullDiagramData.reduce(function(all,order,or){return(all+'<tr><td>111</td><td>222</td><td>333</td><td>444</td><td>555</td><td>666</td><td><input type="button" value="Отчёт" class="butfortab"><br><input type="button" value="Расписание" onclick="diagramData=fullDiagramData['+or+'];setDiagram();"></td></tr>')},'');
-	$(document.getElementById('tab1')).append(str);
+function make4thTab() {
+	var main=document.getElementById('main');
+	main.innerHTML='';
+	var str='<table class="conttab"><caption>'+static[5].caption+'</caption><tbody id="tab1"><tr>'+static[5].heads.reduce(function(all,head){return(all+'<td>'+head+'</td>')},'')+'</tr></tbody></table>';
+	$(main).append(str);
+	receivedData.forEach(function(obj) {
+    	$('.conttab').find('tr').last().after('<tr><td>'+obj.OrderName+'</td><td>'+obj.EquipmentScheme+'</td><td>'+obj.EquipmentCost+'</td><td>'+obj.ProcessTime+'</td><td>'+obj.Income+'</td><td>'+obj.ServicePrice+'</td><td>'+obj.ProcessTime+'</td><td><input type="button" value="Отчёт" class="butfortab"/><br><input type="button" class="butfortab" value="Расписание"/></td></tr>');
+    	$('.butfortab').last().on('click',todiag);
+    	function todiag() {
+    		loads=[];
+    		diagramData=obj.DiagramData;
+    		setDiagram();
+    	}		
+    });    			
 }

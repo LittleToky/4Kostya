@@ -1,5 +1,5 @@
 var colors=['ff7700','00b0b0','F13C76','0ff000','AD66D5','ffff00','A66E00','ff5050','767377','701A42','0BF5ED','172461','612717','7F3C7E','329F4D']; // массив цветов
-var load=[]; // массив коэффициентов загрузки каждого станка до дедлайна
+var loads=[]; // массив коэффициентов загрузки каждого станка до дедлайна
 var today=new Date; // сейчас
 today=new Date(today.getFullYear(),today.getMonth(),today.getDate()); // 00:00 сегодня
 var onedaywidth=500; // ширина одного дня в пикселях
@@ -36,7 +36,7 @@ function setDiagram() { // вывод диаграммы
 				str+='<td class="cell edge"></td>'}
 			str+='</tr>'
 		}
-		str+='</table><br><input type="checkbox" onchange="grid(this)" checked/> Убрать/Показать сетку<div id="workarea"></div>'; 
+		str+='</table><br><input type="checkbox" onchange="grid(this)" checked/> Убрать/Показать сетку<div id="workarea"></div><br><div class="button" onclick="make4thTab()">Назад</div>'; 
 		document.getElementById('main').innerHTML=str; // вывод координатной сетки в main
 		var leftTopCorner=$(document.getElementById('coord')).find('.cell').offset(); // координаты левого верхнего угла рабочей области
 		var workarea=document.getElementById('workarea').style; workarea.top=(leftTopCorner.top)-document.getElementById('nav').offsetHeight+'px'; workarea.left=(leftTopCorner.left-1)-document.getElementById('aside').offsetWidth+'px'; // смещаем workarea в нужное место
@@ -90,10 +90,10 @@ function deadLiner() {
 		machine.operations.forEach(function(operation){ // для каждой операции
 			workMinutes+=operation.duration // добавляем длительность операции к рабочим минутам станка
 		});
-		load.push((workMinutes*100/deadMinutes).toFixed(2)+'%'); // расчет коэф. загрузки станка, запоминаем в load
+		loads.push((workMinutes*100/deadMinutes).toFixed(2)+'%'); // расчет коэф. загрузки станка, запоминаем в load
 	});
 
-	load.forEach(function(load,i){ // Вывод коэф. загрузки в описание стана
+	loads.forEach(function(load,i){ // Вывод коэф. загрузки в описание станка
 		($($('.matype')[i]).find('div')[0]).innerHTML+='<br><p>Загрузка '+load+'</p>';
 		$('.badmachine p').css({'color':'#922e2e'});
 	})
